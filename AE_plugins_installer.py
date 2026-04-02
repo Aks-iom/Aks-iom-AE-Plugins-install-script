@@ -8,6 +8,45 @@ import gdown
 import customtkinter as ctk
 from tkinter import END, messagebox
 
+# =================================================================
+# КЛАСС-ПЕРЕХВАТЧИК ДЛЯ ПОЛУЧЕНИЯ ПРОГРЕССА СКАЧИВАНИЯ (tqdm)
+# =================================================================
+class GdownLogCatcher:
+    def __init__(self, ui_app, original_stderr):
+        self.ui_app = ui_app
+        self.original_stderr = original_stderr
+        self.is_progress = False
+
+    def write(self, text):
+        if self.original_stderr:
+            self.original_stderr.write(text)
+            self.original_stderr.flush()
+
+        if not text:
+            return
+
+        if '\r' in text:
+            clean_text = text.split('\r')[-1].strip()
+            if clean_text:
+                if not self.is_progress:
+                    self.ui_app.after(0, self.ui_app._safe_log, clean_text)
+                    self.is_progress = True
+                else:
+                    self.ui_app.after(0, self.ui_app._update_last_log_line, clean_text)
+        else:
+            clean_text = text.strip()
+            if clean_text:
+                if self.is_progress:
+                    self.is_progress = False
+                self.ui_app.after(0, self.ui_app._safe_log, clean_text)
+
+    def flush(self):
+        if self.original_stderr:
+            self.original_stderr.flush()
+
+    def isatty(self):
+        return True
+
 # Базовые настройки темы
 ctk.set_appearance_mode("dark")
 
@@ -44,29 +83,28 @@ class AksiomInstaller(ctk.CTk):
             self.iconbitmap(icon_path)
 
         self.plugins_data = [
-            ("RedGiant", r"RedGiant\RedGiant.bat", False),
-            ("Sapphire", r"Sapphire\Sapphire.bat", False),
-            ("Mocha_Pro", r"Mocha pro\mochapro_installer.bat", False),
-            ("BCC", r"BCC\BCC.bat", False),
-            ("Bokeh", r"Bokeh\Bokeh.bat", True),
-            ("Deep_Glow", r"Deep_Glow\Deep_Glow.bat", False),
-            ("Deep_Glow2", r"Deep_Glow2\deep_glow2.bat", True),
-            ("Element", r"Element\Element.bat", True),
-            ("Fast_Layers", r"Fast_Layers\Fast_Layers.bat", False),
-            ("Flow", r"Flow\Flow.bat", False),
-            ("Fxconsole", r"Fxconsole\Fxconsole.bat", True),
-            ("Glitchify", r"Glitchify\Glitchify.bat", True),
-            ("Prime_tool", r"Prime_tool\Prime_tool.bat", False),
-            ("RSMB", r"RSMB\RSMB.bat", False),
-            ("Saber", r"Saber\Saber.bat", True),
-            ("Shake_Generator", r"Shake_Generator\Shake_Generator.bat", True),
-            ("Twich", r"Twich\Twich.bat", True),
-            ("Twixtor", r"Twixtor\Twixtor.bat", False),
-            ("textevo2", r"textevo2\textevo2.bat", True),
-            ("uwu2x", r"uwu2x\uwu2x.bat", False)
+            ("RedGiant", "2026.3", r"RedGiant\RedGiant.bat", False),
+            ("Sapphire", "2026", r"Sapphire\Sapphire.bat", False),
+            ("Mocha_Pro", "2026", r"Mocha pro\mochapro_installer.bat", False),
+            ("BCC", "2026.0.1", r"BCC\BCC.bat", False),
+            ("Bokeh", "1.4.1", r"Bokeh\Bokeh.bat", True),
+            ("Deep_Glow", "1.6.6", r"Deep_Glow\Deep_Glow.bat", False),
+            ("Deep_Glow2", "1.1", r"Deep_Glow2\deep_glow2.bat", True),
+            ("Element", "2.2.3", r"Element\Element.bat", True),
+            ("Fast_Layers", "1.0", r"Fast_Layers\Fast_Layers.bat", False),
+            ("Flow", "1.5", r"Flow\Flow.bat", False),
+            ("Fxconsole", "1.0.5", r"Fxconsole\Fxconsole.bat", True),
+            ("Glitchify", "1.0", r"Glitchify\Glitchify.bat", True),
+            ("Prime_tool", "1.0", r"Prime_tool\Prime_tool.bat", False),
+            ("RSMB", "6.6", r"RSMB\RSMB.bat", False),
+            ("Saber", "1.0.40", r"Saber\Saber.bat", True),
+            ("Shake_Generator", "1.0", r"Shake_Generator\Shake_Generator.bat", True),
+            ("Twich", "1.0.4", r"Twich\Twich.bat", True),
+            ("Twixtor", "8.1.0", r"Twixtor\Twixtor.bat", False),
+            ("Textevo2", "2.0", r"textevo2\textevo2.bat", True),
+            ("Uwu2x", "1.0", r"uwu2x\uwu2x.bat", False)
         ]
         
-        # Обновленная база: расширенный поиск путей для глобальных плагинов
         self.check_paths = {
             "RedGiant": lambda ver: [r"C:\Program Files\Maxon", r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Red Giant"],
             "Sapphire": lambda ver: [
@@ -111,7 +149,7 @@ class AksiomInstaller(ctk.CTk):
             "Bokeh": "1G-Nq99ZsYglH9VxF4tQ_8B7HKJDcj1fw",
             "Deep_Glow": "1EdJTHsmPwcq2uNFx_SLy9I7_tzeqs0U5",
             "Deep_Glow2": "15u3MNjgbKORw5MeBud7w8jcF_U__BEgT",
-            "Element": "15u3MNjgbKORw5MeBud7w8jcF_U__BEgT",
+            "Element": "1_SredouM2YicE0H3LJ5ZA7A96ICoKrw3", 
             "Fast_Layers": "104Aph7Esk6EbrGBLlWQw5vFO9ducAsfN",
             "Flow": "1ngcSwjjywDGTNQacJiye1Hw_cy_nlsjj",
             "Fxconsole": "1Ta6GJyHN_h87W0g1ciLtr5aX89l_TAYS",
@@ -129,7 +167,6 @@ class AksiomInstaller(ctk.CTk):
         self.create_widgets()
         self.version_var.trace_add("write", lambda *args: self.check_installed_plugins())
         
-        # Первичная проверка при запуске приложения (для глобальных плагинов)
         self.check_installed_plugins()
 
     def create_widgets(self):
@@ -191,12 +228,18 @@ class AksiomInstaller(ctk.CTk):
         )
         self.cb_select_all.pack(anchor="w", pady=(5, 5), padx=5)
 
-        for plugin_name, _, _ in self.plugins_data:
+        # Вывод названия плагина вместе с версией (скрываем 1.0)
+        for plugin_name, version, _, _ in self.plugins_data:
             var = ctk.BooleanVar(value=False)
+            
+            if version == "1.0":
+                display_text = plugin_name
+            else:
+                display_text = f"{plugin_name}  [v{version}]"
             
             cb = ctk.CTkCheckBox(
                 self.scrollable_checkbox_frame, 
-                text=plugin_name, 
+                text=display_text, 
                 variable=var, 
                 command=lambda n=plugin_name, v=var: self.on_plugin_toggle(n, v), 
                 **cb_kwargs
@@ -258,7 +301,20 @@ class AksiomInstaller(ctk.CTk):
             hover_color="#333333",
             command=lambda: webbrowser.open("https://t.me/AE_plugins_script")
         )
-        self.btn_telegram.pack(side="left")
+        self.btn_telegram.pack(side="left", padx=(0, 10))
+        
+        self.btn_source = ctk.CTkButton(
+            self.footer_frame, 
+            text="Источник", 
+            font=("Calibri", 13, "underline"),
+            width=0, 
+            height=20,
+            fg_color="transparent", 
+            text_color="#888888",
+            hover_color="#333333",
+            command=lambda: webbrowser.open("https://satvrn.li/windows")
+        )
+        self.btn_source.pack(side="left")
 
         self.lbl_author = ctk.CTkLabel(
             self.footer_frame, 
@@ -351,7 +407,6 @@ class AksiomInstaller(ctk.CTk):
                 
                 is_installed = False
                 for path in paths:
-                    # Игнорируем пути, в которых есть слово "None" (значит версия AE не выбрана)
                     if "None" not in path and os.path.exists(path):
                         is_installed = True
                         break
@@ -380,9 +435,6 @@ class AksiomInstaller(ctk.CTk):
         all_checked = all(var.get() for _, var in self.checkboxes)
         self.select_all_var.set(all_checked)
 
-    # =================================================================
-    # БЕЗОПАСНЫЕ ОБНОВЛЕНИЯ ИНТЕРФЕЙСА (ДЛЯ РАБОТЫ ИЗ ФОНОВОГО ПОТОКА)
-    # =================================================================
     def log(self, message):
         self.after(0, self._safe_log, message)
 
@@ -392,19 +444,25 @@ class AksiomInstaller(ctk.CTk):
         self.log_textbox.see("end")
         self.log_textbox.configure(state="disabled")
 
+    def _update_last_log_line(self, message):
+        self.log_textbox.configure(state="normal")
+        self.log_textbox.delete("end-2c linestart", "end-1c")
+        self.log_textbox.insert("end-1c", message)
+        self.log_textbox.see("end")
+        self.log_textbox.configure(state="disabled")
+
     def _update_progress_ui(self, text, value):
         self.progress_label.configure(text=text)
         self.progressbar.set(value)
 
     def _finish_installation_ui(self):
-        self.progress_label.configure(text="Установка: Завершена (100%)")
+        self.progress_label.configure(text="Установка: Завершена")
         self.progressbar.set(1.0)
         try:
             self.check_installed_plugins() 
         except Exception as e:
             self._safe_log(f"[ОШИБКА UI] {e}")
         self.btn_install.configure(state="normal")
-    # =================================================================
 
     def clear_logs(self):
         self.log_textbox.configure(state="normal") 
@@ -416,10 +474,15 @@ class AksiomInstaller(ctk.CTk):
             self.log(f"[ОШИБКА] Не указан Google Drive ID для скачивания.")
             return False
             
+        original_stderr = sys.stderr
         try:
             os.makedirs(os.path.dirname(destination_path), exist_ok=True)
-            self.log(f"[*] Загрузка архива с Google Диска (может занять время)...")
-            output = gdown.download(id=file_id, output=destination_path, quiet=True)
+            self.log(f"[*] Загрузка архива с Google Диска...")
+            
+            sys.stderr = GdownLogCatcher(self, original_stderr)
+            output = gdown.download(id=file_id, output=destination_path, quiet=False)
+            sys.stderr = original_stderr
+            
             if output:
                 self.log(f"[+] Архив скачан.")
                 return True
@@ -427,6 +490,7 @@ class AksiomInstaller(ctk.CTk):
                 self.log(f"[ОШИБКА] Не удалось скачать файл. Проверьте ID или права доступа.")
                 return False
         except Exception as e:
+            sys.stderr = original_stderr
             self.log(f"[ОШИБКА] Критическая ошибка при скачивании: {e}")
             return False
 
@@ -495,7 +559,7 @@ class AksiomInstaller(ctk.CTk):
                 if not plugin_info:
                     continue
 
-                _, bat_path, needs_version = plugin_info
+                _, _, bat_path, needs_version = plugin_info
                 full_bat_path = os.path.join(self.base_dir, bat_path)
 
                 start_pct = index / total
@@ -538,6 +602,11 @@ class AksiomInstaller(ctk.CTk):
                         self.log(f"[ОШИБКА] Ошибка извлечения: {e}")
                         continue
 
+                if not os.path.exists(full_bat_path):
+                    self.log(f"❌ [ОШИБКА] Файл не найден по пути: {full_bat_path}")
+                    self.log(f"Проверь структуру скачанного ZIP архива!")
+                    continue
+
                 self.log(f"▶ Запуск скрипта установки...")
                 cmd = [full_bat_path]
                 if needs_version:
@@ -553,6 +622,7 @@ class AksiomInstaller(ctk.CTk):
                         stderr=subprocess.STDOUT, 
                         stdin=subprocess.DEVNULL, 
                         startupinfo=startupinfo, 
+                        shell=True,
                         text=True, 
                         encoding='utf-8', 
                         errors='replace',
@@ -575,7 +645,39 @@ class AksiomInstaller(ctk.CTk):
                 self.after(0, self._update_progress_ui, f"Завершено: {plugin_name}", end_pct)
 
             self.log(f"\n{'='*50}")
-            self.log("🎉 ВСЕ ВЫБРАННЫЕ ПЛАГИНЫ УСТАНОВЛЕНЫ!")
+            self.log("🔍 ФИНАЛЬНАЯ ПРОВЕРКА УСТАНОВКИ...")
+            
+            failed_plugins = []
+            for plugin_name in selected_plugins:
+                check_func = self.check_paths.get(plugin_name)
+                is_installed = False
+                
+                if check_func:
+                    paths = check_func(ae_version)
+                    if isinstance(paths, str):
+                        paths = [paths]
+                        
+                    for path in paths:
+                        if os.path.exists(path):
+                            is_installed = True
+                            break
+                
+                if not is_installed:
+                    failed_plugins.append(plugin_name)
+                    self.log(f"❌ [ОШИБКА] Плагин {plugin_name} не найден по ожидаемому пути!")
+                else:
+                    self.log(f"✅ {plugin_name} корректно установлен.")
+
+            self.log(f"\n{'='*50}")
+            if failed_plugins:
+                self.log("⚠️ Установка завершена, но следующие плагины НЕ НАЙДЕНЫ:")
+                for fp in failed_plugins:
+                    self.log(f"   -> {fp}")
+                self.log("(Возможно, установщик отработал с ошибкой или установил файлы в нестандартную директорию)")
+            else:
+                self.log("🎉 ВСЕ ВЫБРАННЫЕ ПЛАГИНЫ УСПЕШНО УСТАНОВЛЕНЫ И НАЙДЕНЫ!")
+                
+            self.log("\nЕсли возникли проблемы или предложения просьба написать Not_aks.t.me")
             self.log(f"{'='*50}")
 
         except Exception as e:
