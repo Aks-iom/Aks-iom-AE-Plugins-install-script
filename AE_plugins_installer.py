@@ -6,7 +6,17 @@ import webbrowser
 import zipfile
 import gdown
 import customtkinter as ctk
+import glob
+import urllib.request
+import urllib.error
+import json
+import re
 from tkinter import END, messagebox
+import shutil
+import winreg
+import time
+import ctypes
+import ctypes.wintypes
 
 # =================================================================
 # КЛАСС-ПЕРЕХВАТЧИК ДЛЯ ПОЛУЧЕНИЯ ПРОГРЕССА СКАЧИВАНИЯ (tqdm)
@@ -53,6 +63,11 @@ ctk.set_appearance_mode("dark")
 class AksiomInstaller(ctk.CTk):
     def __init__(self):
         super().__init__()
+        
+        # ===============================================================
+        # ТЕКУЩАЯ ВЕРСИЯ ПРОГРАММЫ (меняйте её при выпуске обновлений)
+        self.CURRENT_VERSION = "3,1" 
+        # ===============================================================
 
         self.title("Ae plugins installer")
         self.geometry("820x550")
@@ -105,40 +120,27 @@ class AksiomInstaller(ctk.CTk):
             ("Uwu2x", "1.0", r"uwu2x\uwu2x.bat", False)
         ]
         
-        self.check_paths = {
-            "RedGiant": lambda ver: [r"C:\Program Files\Maxon", r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Red Giant"],
-            "Sapphire": lambda ver: [
-                r"C:\Program Files\GenArts\SapphireAE", 
-                r"C:\Program Files\GenArts", 
-                r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\GenArts"
-            ],
-            "Mocha_Pro": lambda ver: [
-                r"C:\Program Files\BorisFX\Mocha Pro 2026", 
-                r"C:\Program Files\BorisFX\Mocha Pro", 
-                r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\BorisFX\MochaPro2026"
-            ], 
-            "BCC": lambda ver: [
-                r"C:\Program Files\BorisFX\ContinuumAE", 
-                r"C:\Program Files\BorisFX\Continuum", 
-                r"C:\Program Files\BorisFX", 
-                r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\BorisFX"
-            ],
-            "Bokeh": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\Plugins Everything\Bokeh.aex",
-            "Deep_Glow": lambda ver: r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Deep Glow.aex",
-            "Deep_Glow2": lambda ver: r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\DeepGlow2.aex",
-            "Element": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\Element.aex",
-            "Fast_Layers": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Scripts\ScriptUI Panels\Fast_Layers.jsx",
-            "Flow": lambda ver: r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\flow",
-            "Fxconsole": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\FXConsole.aex",
-            "Glitchify": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\Glitchify.aex",
-            "Prime_tool": lambda ver: r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\com.PrimeTools",
-            "RSMB": lambda ver: r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\RSMB",
-            "Saber": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\Saber.aex",
-            "Shake_Generator": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Scripts\ScriptUI Panels\Shake_Generator.jsx",
-            "Twich": lambda ver: [rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\Twitch.aex", rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Plug-ins\VideoCopilot\twitch.aex"],
-            "Twixtor": lambda ver: r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Twixtor8AE",
-            "textevo2": lambda ver: rf"C:\Program Files\Adobe\Adobe After Effects {ver}\Support Files\Scripts\ScriptUI Panels\TextEvo2.jsxbin",
-            "uwu2x": lambda ver: [r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\uwu2x-pro", r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\uwu2x"]
+        self.plugin_keywords = {
+            "RedGiant": ["red giant", "maxon"],
+            "Sapphire": ["sapphire", "genarts"],
+            "Mocha_Pro": ["mocha pro", "mochapro"],
+            "BCC": ["continuum", "bcc"],
+            "Bokeh": ["bokeh"],
+            "Deep_Glow": ["deep glow", "deep_glow", "deepglow.aex"], 
+            "Deep_Glow2": ["deepglow2", "deep glow 2", "deep_glow2"],
+            "Element": ["element"],
+            "Fast_Layers": ["fast_layers", "fast layers"],
+            "Flow": ["flow"],
+            "Fxconsole": ["fxconsole"],
+            "Glitchify": ["glitchify"],
+            "Prime_tool": ["primetools", "prime_tool", "com.primetools"],
+            "RSMB": ["rsmb"],
+            "Saber": ["saber"],
+            "Shake_Generator": ["shake_generator", "shake generator"],
+            "Twich": ["twitch", "twich"],
+            "Twixtor": ["twixtor", "twixtor8ae"],
+            "Textevo2": ["textevo2", "textevo"],
+            "Uwu2x": ["uwu2x", "uwu2x-pro"]
         }
         
         self.gdrive_file_ids = {
@@ -160,18 +162,20 @@ class AksiomInstaller(ctk.CTk):
             "Shake_Generator": "10GCJTk-B2bDYMTS0en4wbpq10ceVAFfB",
             "Twich": "1pFZ1DRC3K00uWmRq23Asu-K9dl8Yr9s4",
             "Twixtor": "1Kcjkv4qbqVqaeEYnaeY1vKEkOGioePT9",
-            "textevo2": "1R6gWidqSVR4HC_c7XB025khxHMLFe_KK",
-            "uwu2x": "1X4QYzAAZK0djo0-7a8mn63tpvWNFQs0u"
+            "Textevo2": "1R6gWidqSVR4HC_c7XB025khxHMLFe_KK",
+            "Uwu2x": "1X4QYzAAZK0djo0-7a8mn63tpvWNFQs0u"
         }
 
         self.create_widgets()
         self.version_var.trace_add("write", lambda *args: self.check_installed_plugins())
         
         self.check_installed_plugins()
+        self.check_for_updates()
 
     def create_widgets(self):
         left_width = 340
 
+        # === ЛЕВАЯ ПАНЕЛЬ ===
         self.left_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.left_frame.grid(row=0, column=0, padx=(20, 10), pady=20, sticky="nsew")
 
@@ -228,7 +232,6 @@ class AksiomInstaller(ctk.CTk):
         )
         self.cb_select_all.pack(anchor="w", pady=(5, 5), padx=5)
 
-        # Вывод названия плагина вместе с версией (скрываем 1.0)
         for plugin_name, version, _, _ in self.plugins_data:
             var = ctk.BooleanVar(value=False)
             
@@ -324,6 +327,7 @@ class AksiomInstaller(ctk.CTk):
         )
         self.lbl_author.pack(side="right")
 
+        # === ПРАВАЯ ПАНЕЛЬ ===
         self.right_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.right_frame.grid(row=0, column=1, padx=(10, 20), pady=20, sticky="nsew")
 
@@ -342,8 +346,12 @@ class AksiomInstaller(ctk.CTk):
         self.log_textbox.pack(fill="both", expand=True)
         self.log_textbox.configure(state="disabled")
 
+        # Контейнер для кнопок "Обновление" и "Очистить логи"
+        self.right_bottom_frame = ctk.CTkFrame(self.right_frame, fg_color="transparent")
+        self.right_bottom_frame.pack(fill="x", pady=(10, 0))
+
         self.btn_clear_log = ctk.CTkButton(
-            self.right_frame, 
+            self.right_bottom_frame, 
             text="Очистить логи", 
             font=self.font_main, 
             fg_color="#333333", 
@@ -353,11 +361,81 @@ class AksiomInstaller(ctk.CTk):
             corner_radius=6,
             command=self.clear_logs
         )
-        self.btn_clear_log.pack(anchor="e", pady=(10, 0))
+        self.btn_clear_log.pack(side="right")
 
         self.target_y = None
         self._is_animating = False
         self.scrollable_checkbox_frame._mouse_wheel_all = self.smooth_wheel_event
+        
+    def extract_version_number(self, text):
+        text = text.replace(',', '.')
+        match = re.search(r'\d+(\.\d+)*', text)
+        if match:
+            return match.group()
+        return "0.0"
+
+    def extract_display_version(self, text):
+        match = re.search(r'(?:Beta\s*)?\d+(?:[.,]\d+)*', text, re.IGNORECASE)
+        if match:
+            found = match.group()
+            if found.lower().startswith('beta'):
+                return "V.Beta " + found[4:].strip()
+            else:
+                return "V." + found
+        return text
+
+    def is_version_newer(self, latest, current):
+        v_latest = tuple(map(int, self.extract_version_number(latest).split('.')))
+        v_current = tuple(map(int, self.extract_version_number(current).split('.')))
+        
+        length = max(len(v_latest), len(v_current))
+        v_latest += (0,) * (length - len(v_latest))
+        v_current += (0,) * (length - len(v_current))
+        
+        return v_latest > v_current
+
+    def check_for_updates(self):
+        def fetch():
+            try:
+                self.after(0, lambda: self.log("[ОБНОВЛЕНИЕ] Подключение к серверам GitHub..."))
+                url = "https://api.github.com/repos/Aks-iom/Aks-iom-AE-Plugins-install-script/releases/tags/AE"
+                req = urllib.request.Request(url, headers={'User-Agent': 'AksiomInstaller'})
+                
+                with urllib.request.urlopen(req, timeout=5) as response:
+                    data = json.loads(response.read().decode())
+                    release_name = data.get("name", "")
+                    
+                    if self.is_version_newer(release_name, self.CURRENT_VERSION):
+                        display_version = self.extract_display_version(release_name)
+                        self.after(0, lambda: self.show_update_button(display_version))
+                        self.after(0, lambda: self.log(f"[ОБНОВЛЕНИЕ] Найдена новая версия: {display_version}"))
+                    else:
+                        self.after(0, lambda: self.log("[ОБНОВЛЕНИЕ] У вас установлена актуальная версия."))
+                        
+            except urllib.error.HTTPError as e:
+                if e.code == 403:
+                    self.after(0, lambda: self.log("⚠️ [ОБНОВЛЕНИЕ] Ошибка 403: Превышен лимит запросов GitHub (60 проверок в час). Попробуйте позже."))
+                elif e.code == 404:
+                    self.after(0, lambda: self.log("⚠️ [ОБНОВЛЕНИЕ] Ошибка 404: Релиз с тегом 'AE' не найден на GitHub."))
+                else:
+                    self.after(0, lambda: self.log(f"⚠️ [ОБНОВЛЕНИЕ] Ошибка сервера: {e.code}"))
+            except Exception as e:
+                self.after(0, lambda: self.log(f"⚠️ [ОБНОВЛЕНИЕ] Ошибка сети при проверке: {e}"))
+
+        threading.Thread(target=fetch, daemon=True).start()
+
+    def show_update_button(self, release_title):
+        self.btn_update = ctk.CTkButton(
+            self.right_bottom_frame,
+            text=f"Скачать обновление ({release_title})",
+            font=self.font_main, 
+            fg_color=self.accent_color, 
+            hover_color=self.accent_hover,
+            height=30,
+            corner_radius=6,
+            command=lambda: webbrowser.open("https://github.com/Aks-iom/Aks-iom-AE-Plugins-install-script/releases/tag/AE")
+        )
+        self.btn_update.pack(side="left", fill="x", expand=True, padx=(0, 10))
 
     def smooth_wheel_event(self, event):
         if not self.scrollable_checkbox_frame._check_if_mouse_inside(event.x_root, event.y_root):
@@ -394,29 +472,75 @@ class AksiomInstaller(ctk.CTk):
                 self.target_y = None
                 self._is_animating = False
 
+    def is_plugin_installed(self, plugin_name, ae_version):
+        search_dirs = [
+            r"C:\Program Files\BorisFX",
+            r"C:\Program Files\BorisFX\ContinuumAE\14\lib",
+            r"C:\Program Files\Adobe",
+            r"C:\Program Files\Maxon",
+            r"C:\Program Files\GenArts",
+            rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\Plugins Everything",
+            rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot",
+            r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore",
+            r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\RSMB",
+            r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Twixtor8AE",
+            r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions",
+            r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\flow",
+            r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\com.PrimeTools",
+            r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\uwu2x-pro",
+            r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\uwu2x",
+            r"C:\ProgramData",
+            r"C:\ProgramData\VideoCopilot",
+            r"C:\ProgramData\GenArts\rlm"
+        ]
+        
+        script_panels = glob.glob(r"C:\Program Files\Adobe\Adobe After Effects*\Support Files\Scripts\ScriptUI Panels")
+        search_dirs.extend(script_panels)
+        
+        valid_dirs = list(set(d for d in search_dirs if os.path.exists(d)))
+        keywords = self.plugin_keywords.get(plugin_name, [plugin_name.lower()])
+        
+        for d in valid_dirs:
+            try:
+                for item in os.listdir(d):
+                    item_lower = item.lower()
+                    for kw in keywords:
+                        if kw.lower() in item_lower:
+                            if plugin_name == "Deep_Glow" and "2" in item_lower and "deep" in item_lower:
+                                continue
+                            return True
+                            
+                dir_name_lower = os.path.basename(d).lower()
+                for kw in keywords:
+                    if kw.lower() in dir_name_lower:
+                        if plugin_name == "Deep_Glow" and "2" in dir_name_lower and "deep" in dir_name_lower:
+                            continue
+                        return True
+                        
+            except Exception:
+                pass
+                
+        if plugin_name == "Sapphire":
+            if glob.glob(r"C:\ProgramData\GenArts\rlm\*.lic"):
+                return True
+                
+        return False
+
     def check_installed_plugins(self):
         ae_ver = self.version_var.get()
         full_ver = "20" + ae_ver if ae_ver != "None" else "None"
         
         for name, var in self.checkboxes:
-            check_func = self.check_paths.get(name)
-            if check_func:
-                paths = check_func(full_ver)
-                if isinstance(paths, str):
-                    paths = [paths]
-                
-                is_installed = False
-                for path in paths:
-                    if "None" not in path and os.path.exists(path):
-                        is_installed = True
-                        break
-                
-                for child in self.scrollable_checkbox_frame.winfo_children():
-                    if isinstance(child, ctk.CTkCheckBox) and child.cget("text").startswith(name):
-                        if is_installed:
-                            child.configure(text_color="#4CAF50") 
-                        else:
-                            child.configure(text_color="#cccccc") 
+            is_installed = False
+            if full_ver != "None":
+                is_installed = self.is_plugin_installed(name, full_ver)
+            
+            for child in self.scrollable_checkbox_frame.winfo_children():
+                if isinstance(child, ctk.CTkCheckBox) and child.cget("text").startswith(name):
+                    if is_installed:
+                        child.configure(text_color="#4CAF50") 
+                    else:
+                        child.configure(text_color="#cccccc") 
 
     def toggle_all(self):
         state = self.select_all_var.get()
@@ -517,17 +641,7 @@ class AksiomInstaller(ctk.CTk):
 
         for name, var in self.checkboxes:
             if var.get(): 
-                check_func = self.check_paths.get(name)
-                is_installed = False
-                if check_func:
-                    paths = check_func(full_ae_version)
-                    if isinstance(paths, str):
-                        paths = [paths]
-                    
-                    for path in paths:
-                        if os.path.exists(path):
-                            is_installed = True
-                            break
+                is_installed = self.is_plugin_installed(name, full_ae_version)
                             
                 if is_installed:
                     skipped_plugins.append(name)
@@ -549,7 +663,177 @@ class AksiomInstaller(ctk.CTk):
         self.log(f"{'='*50}")
         
         threading.Thread(target=self.run_install_process, args=(full_ae_version, selected_plugins), daemon=True).start()
+    def execute_native_install(self, plugin_name, ae_version, src_dir):
+        """Выполняет установку плагина средствами Python без использования .bat"""
+        import zipfile
+        
+        if plugin_name == "BCC":
+            setup_exe = os.path.join(src_dir, "BCC_Setup.exe")
+            subprocess.run([setup_exe, "/s", "/v/qb", "/SILENT", "/SUPPRESSMSGBOXES", "/NORESTART"], check=True)
+            bcc_lib = r"C:\Program Files\BorisFX\ContinuumAE\14\lib"
+            os.makedirs(bcc_lib, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Crack", "Continuum_Common_AE.dll"), bcc_lib)
+            prog_data_rlm = r"C:\ProgramData\GenArts\rlm"
+            if os.path.exists(prog_data_rlm):
+                for lic in glob.glob(os.path.join(prog_data_rlm, "*.lic")):
+                    try: os.remove(lic)
+                    except: pass
+            shutil.copytree(os.path.join(src_dir, "Crack", "GenArts"), r"C:\ProgramData\GenArts", dirs_exist_ok=True)
 
+        elif plugin_name == "Bokeh":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\Plugins Everything"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Bokeh.aex"), dest)
+
+        elif plugin_name == "Deep_Glow":
+            dest = r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Deep Glow.aex"), dest)
+
+        elif plugin_name == "Deep_Glow2":
+            dest = r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "DeepGlow2.aex"), dest)
+            shutil.copy2(os.path.join(src_dir, "IrisBlurSDK.dll"), dest)
+
+        elif plugin_name == "Element":
+            dest_plugin = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot"
+            dest_lic = r"C:\ProgramData\VideoCopilot"
+            
+            # Получаем реальный путь к "Моим документам" через API Windows
+            CSIDL_PERSONAL = 5 
+            buf = ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
+            ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, 0, buf)
+            real_documents_path = buf.value
+
+            dest_docs = os.path.join(real_documents_path, "VideoCopilot")
+            
+            os.makedirs(dest_plugin, exist_ok=True)
+            os.makedirs(dest_lic, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Element.aex"), dest_plugin)
+            shutil.copy2(os.path.join(src_dir, "element2_license"), dest_lic)
+            shutil.copytree(os.path.join(src_dir, "VideoCopilot"), dest_docs, dirs_exist_ok=True)
+
+        elif plugin_name == "Fast_Layers":
+            ae_base = r"C:\Program Files\Adobe"
+            if os.path.exists(ae_base):
+                for d in glob.glob(os.path.join(ae_base, "Adobe After Effects*")):
+                    scripts_path = os.path.join(d, "Support Files", "Scripts", "ScriptUI Panels")
+                    if os.path.exists(os.path.join(d, "Support Files", "Scripts")):
+                        os.makedirs(scripts_path, exist_ok=True)
+                        shutil.copy2(os.path.join(src_dir, "Fast_Layers.jsx"), scripts_path)
+
+        elif plugin_name == "Flow":
+            dest = r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\flow"
+            src_flow = os.path.join(src_dir, "flow-v1.5.2")
+            if os.path.exists(src_flow):
+                shutil.copytree(src_flow, dest, dirs_exist_ok=True)
+            for csxs in ["CSXS.10", "CSXS.11", "CSXS.12"]:
+                try:
+                    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Adobe\{csxs}")
+                    winreg.SetValueEx(key, "PlayerDebugMode", 0, winreg.REG_SZ, "1")
+                    winreg.CloseKey(key)
+                except Exception as e:
+                    self.log(f"   [ОШИБКА РЕЕСТРА] Не удалось добавить ключ {csxs}: {e}")
+
+        elif plugin_name == "Fxconsole":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "FXConsole.aex"), dest)
+
+        elif plugin_name == "Glitchify":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Glitchify.aex"), dest)
+
+        elif plugin_name == "Mocha_Pro":
+            installer_path = os.path.join(src_dir, "mochapro_2026.0.1_adobe_installer.exe")
+            subprocess.run([installer_path, "/SILENT", "/SUPPRESSMSGBOXES", "/NORESTART"], check=True)
+            time.sleep(4)
+            subprocess.run(["taskkill", "/F", "/IM", "mochapro.exe", "/T"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(["taskkill", "/F", "/IM", "mocha.exe", "/T"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        elif plugin_name == "RSMB":
+            dest = r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\RSMB"
+            os.makedirs(dest, exist_ok=True)
+            for aex in glob.glob(os.path.join(src_dir, "*.aex")):
+                shutil.copy2(aex, dest)
+
+        elif plugin_name == "Saber":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot"
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(os.path.join(src_dir, "Saber.aex"), dest)
+
+        elif plugin_name == "Sapphire":
+            installer_path = os.path.join(src_dir, "sapphire_ae_install.exe")
+            try:
+                subprocess.run([installer_path, "/SILENT", "/SUPPRESSMSGBOXES", "/NORESTART"], check=True)
+            except subprocess.CalledProcessError as e:
+                if e.returncode == 3010:
+                    self.log("   [ИНФО] Установка завершена (требуется перезагрузка ПК в будущем)")
+                else:
+                    raise e
+
+        elif plugin_name == "Shake_Generator":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Scripts\ScriptUI Panels"
+            os.makedirs(dest, exist_ok=True)
+            for jsx in glob.glob(os.path.join(src_dir, "*.jsx")):
+                shutil.copy2(jsx, dest)
+
+        elif plugin_name == "Textevo2":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Scripts\ScriptUI Panels"
+            os.makedirs(dest, exist_ok=True)
+            for jsxbin in glob.glob(os.path.join(src_dir, "*.jsxbin")):
+                shutil.copy2(jsxbin, dest)
+
+        elif plugin_name == "Twich":
+            dest = rf"C:\Program Files\Adobe\Adobe After Effects {ae_version}\Support Files\Plug-ins\VideoCopilot"
+            os.makedirs(dest, exist_ok=True)
+            for aex in glob.glob(os.path.join(src_dir, "*.aex")):
+                shutil.copy2(aex, dest)
+            for key_file in glob.glob(os.path.join(src_dir, "*.key")):
+                shutil.copy2(key_file, dest)
+
+        elif plugin_name == "Twixtor":
+            dest = r"C:\Program Files\Adobe\Common\Plug-ins\7.0\MediaCore\Twixtor8AE"
+            os.makedirs(dest, exist_ok=True)
+            src_twixtor = os.path.join(src_dir, "Twixtor8AE")
+            if os.path.exists(src_twixtor):
+                shutil.copytree(src_twixtor, dest, dirs_exist_ok=True)
+
+        elif plugin_name == "Uwu2x":
+            cep_path = r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions"
+            os.makedirs(cep_path, exist_ok=True)
+            src_pro = os.path.join(src_dir, "uwu2x-pro")
+            src_norm = os.path.join(src_dir, "uwu2x")
+            
+            if os.path.exists(src_pro):
+                shutil.copytree(src_pro, os.path.join(cep_path, "uwu2x-pro"), dirs_exist_ok=True)
+            elif os.path.exists(src_norm):
+                shutil.copytree(src_norm, os.path.join(cep_path, "uwu2x"), dirs_exist_ok=True)
+            
+            for i in range(10, 17):
+                try:
+                    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Adobe\CSXS.{i}")
+                    winreg.SetValueEx(key, "PlayerDebugMode", 0, winreg.REG_SZ, "1")
+                    winreg.CloseKey(key)
+                except Exception as e:
+                    self.log(f"   [ОШИБКА РЕЕСТРА] {e}")
+
+        elif plugin_name == "Prime_tool":
+            cep_path = r"C:\Program Files (x86)\Common Files\Adobe\CEP\extensions\com.PrimeTools"
+            zxp_file = os.path.join(src_dir, "com.PrimeTools.cep.zxp")
+            if os.path.exists(zxp_file):
+                with zipfile.ZipFile(zxp_file, 'r') as zip_ref:
+                    zip_ref.extractall(cep_path)
+
+        elif plugin_name == "RedGiant":
+            subprocess.run([os.path.join(src_dir, "1_Maxon.exe"), "--mode", "unattended", "--unattendedmodeui", "minimal"], check=True)
+            subprocess.run([os.path.join(src_dir, "2_RedGiant.exe"), "--mode", "unattended", "--unattendedmodeui", "minimal"], check=True)
+            subprocess.run([os.path.join(src_dir, "3_Unlocker.exe"), "/SILENT"], check=True)
+            time.sleep(6)
+            subprocess.run(["taskkill", "/F", "/IM", "Maxon App.exe", "/T"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(["taskkill", "/F", "/IM", "Maxon.exe", "/T"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     def run_install_process(self, ae_version, selected_plugins):
         try:
             total = len(selected_plugins)
@@ -567,22 +851,18 @@ class AksiomInstaller(ctk.CTk):
                 
                 self.log(f"\n" + "-"*40)
                 self.log(f"📦 ПЛАГИН: {plugin_name}")
-                
-                target_path_func = self.check_paths.get(plugin_name)
-                if target_path_func:
-                    paths = target_path_func(ae_version)
-                    expected_path = paths[0] if isinstance(paths, list) else paths
-                    self.log(f"📂 Целевой путь установки:\n   -> {expected_path}")
-                else:
-                    self.log(f"📂 Целевой путь определяется системным установщиком.")
-                    
+                self.log(f"📂 Целевой путь определяется автоматически по ключевым словам.")
                 self.log(f"⚙️ Исполняемый файл: {os.path.basename(full_bat_path)}")
                 self.log("-" * 40)
 
-                if not os.path.exists(full_bat_path):
-                    self.log(f"[ИНФО] Локальные файлы отсутствуют. Начинаем загрузку...")
+                plugin_src_dir = os.path.dirname(full_bat_path)
+                
+                # Обязательно нужно определить куда скачивать архив
+                zip_path = os.path.join(self.base_dir, f"{plugin_name}.zip")
+                
+                if not os.path.exists(plugin_src_dir):
+                    self.log(f"[ИНФО] Локальная папка плагина отсутствует. Начинаем загрузку...")
                     file_id = self.gdrive_file_ids.get(plugin_name)
-                    zip_path = os.path.join(self.base_dir, f"{plugin_name}.zip")
                     
                     success = self.download_from_gdrive(file_id, zip_path)
                     if not success:
@@ -602,44 +882,24 @@ class AksiomInstaller(ctk.CTk):
                         self.log(f"[ОШИБКА] Ошибка извлечения: {e}")
                         continue
 
-                if not os.path.exists(full_bat_path):
-                    self.log(f"❌ [ОШИБКА] Файл не найден по пути: {full_bat_path}")
-                    self.log(f"Проверь структуру скачанного ZIP архива!")
-                    continue
-
-                self.log(f"▶ Запуск скрипта установки...")
-                cmd = [full_bat_path]
-                if needs_version:
-                    cmd.append(ae_version)
+                native_plugins = [
+                    "RedGiant", "Sapphire", "Mocha_Pro", "BCC", "Bokeh", "Deep_Glow", 
+                    "Deep_Glow2", "Element", "Fast_Layers", "Flow", "Fxconsole", 
+                    "Glitchify", "Prime_tool", "RSMB", "Saber", "Shake_Generator", 
+                    "Twich", "Twixtor", "Textevo2", "Uwu2x"
+                ]
 
                 try:
-                    startupinfo = subprocess.STARTUPINFO()
-                    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-                    
-                    process = subprocess.Popen(
-                        cmd, 
-                        stdout=subprocess.PIPE, 
-                        stderr=subprocess.STDOUT, 
-                        stdin=subprocess.DEVNULL, 
-                        startupinfo=startupinfo, 
-                        shell=True,
-                        text=True, 
-                        encoding='utf-8', 
-                        errors='replace',
-                        cwd=self.base_dir
-                    )
-
-                    with process.stdout:
-                        for line in iter(process.stdout.readline, ''):
-                            clean_line = line.strip()
-                            if clean_line:
-                                self.log(f"   [CMD] {clean_line}")
-
-                    return_code = process.wait()
-                    self.log(f"✅ {plugin_name} успешно обработан.")
-
+                    if plugin_name in native_plugins:
+                        self.log(f"▶ Выполнение встроенной установки (native Python)...")
+                        plugin_src_dir = os.path.dirname(full_bat_path)
+                        self.execute_native_install(plugin_name, ae_version, plugin_src_dir)
+                        self.log(f"✅ {plugin_name} успешно установлен.")
+                    else:
+                        self.log(f"❌ [ОШИБКА] Плагин {plugin_name} не поддерживается нативным установщиком.")
+                
                 except Exception as e:
-                    self.log(f"[КРИТ. ОШИБКА] Сбой выполнения {plugin_name}: {str(e)}")
+                    self.log(f"❌ [КРИТ. ОШИБКА] Сбой выполнения {plugin_name}: {str(e)}")
 
                 end_pct = (index + 1) / total
                 self.after(0, self._update_progress_ui, f"Завершено: {plugin_name}", end_pct)
@@ -649,22 +909,11 @@ class AksiomInstaller(ctk.CTk):
             
             failed_plugins = []
             for plugin_name in selected_plugins:
-                check_func = self.check_paths.get(plugin_name)
-                is_installed = False
-                
-                if check_func:
-                    paths = check_func(ae_version)
-                    if isinstance(paths, str):
-                        paths = [paths]
-                        
-                    for path in paths:
-                        if os.path.exists(path):
-                            is_installed = True
-                            break
+                is_installed = self.is_plugin_installed(plugin_name, ae_version)
                 
                 if not is_installed:
                     failed_plugins.append(plugin_name)
-                    self.log(f"❌ [ОШИБКА] Плагин {plugin_name} не найден по ожидаемому пути!")
+                    self.log(f"❌ [ОШИБКА] Плагин {plugin_name} не найден после установки!")
                 else:
                     self.log(f"✅ {plugin_name} корректно установлен.")
 
@@ -686,6 +935,24 @@ class AksiomInstaller(ctk.CTk):
         finally:
             self.after(0, self._finish_installation_ui)
 
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
 if __name__ == "__main__":
-    app = AksiomInstaller()
-    app.mainloop()
+    if is_admin():
+        app = AksiomInstaller()
+        app.mainloop()
+    else:
+        # Правильный перезапуск с учетом пробелов в путях и формата запуска (exe или py)
+        if getattr(sys, 'frozen', False):
+            # Для скомпилированного .exe
+            params = " ".join([f'"{arg}"' for arg in sys.argv[1:]])
+        else:
+            # Для запуска через исходник .py
+            params = f'"{os.path.abspath(__file__)}" ' + " ".join([f'"{arg}"' for arg in sys.argv[1:]])
+
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
+        sys.exit() # Обязательно завершаем текущий процесс без прав

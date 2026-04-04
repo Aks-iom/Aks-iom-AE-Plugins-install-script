@@ -8,6 +8,7 @@ echo Переход в рабочую директорию...
 cd /d "%~dp0"
 
 echo Запуск PyInstaller...
+:: Вся команда должна быть на одной строке
 pyinstaller --noconsole --onefile --uac-admin --icon=logo.ico --add-data "logo.ico;." AE_plugins_installer.py
 
 echo.
