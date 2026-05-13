@@ -1,0 +1,249 @@
+{
+    "plugins": [
+        {
+            "name": "Dead-Frames",
+            "version": "1.0",
+            "size": "? MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "zip"
+            ],
+            "custom_files": {
+                "zip": {
+                    "source": "gdrive",
+                    "filename": "Dead-Frames_zip.zip",
+                    "gdrive_id": "1XKIW0q0qDiGqjlusqJi1R3MlVdfnnkzt",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Scripts/ScriptUI Panels"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "irrealix.Bundle",
+            "version": "1.0",
+            "size": "6MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "exe"
+            ],
+            "custom_files": {
+                "exe": {
+                    "source": "gdrive",
+                    "filename": "irrealix.Bundle_exe.exe",
+                    "gdrive_id": "1SKRc7jSG_2jTX42WmVEnP_uHMrJ9_U67"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "PixDitherPixDither",
+            "version": "1.0",
+            "size": "<1MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "PixDitherPixDither_file.aex",
+                    "gdrive_id": "16qpq2ooxpwo2KBM_SLl3EaV3AvusI2F1",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "signalsignal",
+            "version": "1.0",
+            "size": "<1MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "signalsignal_file.aex",
+                    "gdrive_id": "1-tqJa5HNaQoA4-IxJ-yybFoIzYy2C6eW",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "Shadow_Studio_3",
+            "version": "1.0",
+            "size": "80MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "Shadow_Studio_3_file.aex",
+                    "gdrive_id": "1uAHrQ1BS68hPb7i17DYyS9mfq2Iu9Mdu",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "OminoSuite",
+            "version": "1.0",
+            "size": "1,2MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "zip"
+            ],
+            "custom_files": {
+                "zip": {
+                    "source": "gdrive",
+                    "filename": "OminoSuite_zip.zip",
+                    "gdrive_id": "1BLHHHTR70cZL_eW0j3Gf4fkQoaHYm_6s",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "Crates_Godrays",
+            "version": "1.0",
+            "size": "<1MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "Crates_Godrays_file.aex",
+                    "gdrive_id": "126u6X3stMu-C2BlpY66IeGFrafia_suJ",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "Motionclock",
+            "version": "1.0",
+            "size": "? MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "zip",
+                "reg"
+            ],
+            "custom_files": {
+                "zip": {
+                    "source": "gdrive",
+                    "filename": "Motionclock_zip.zip",
+                    "gdrive_id": "1b2mjosi_JSgfB4K32HXINn-r9cjQlm8v",
+                    "target_path": "C:/Program Files (x86)/Common Files/Adobe/CEP/extensions"
+                },
+                "reg": {
+                    "source": "gdrive",
+                    "filename": "Motionclock_reg.reg",
+                    "gdrive_id": "1UfjCt_tvnch-n41naa-PrWs6JqF_C8hX"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "OpticalFlares",
+            "version": "1.3.8",
+            "size": "? MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "exe",
+                "file",
+                "zip"
+            ],
+            "custom_files": {
+                "exe": {
+                    "source": "gdrive",
+                    "filename": "OpticalFlares_exe.exe",
+                    "gdrive_id": "1_VhYqvwdo8OhDkZnB7Lp9slql5raY-ru"
+                },
+                "file": {
+                    "source": "gdrive",
+                    "filename": "OpticalFlares_file.aex",
+                    "gdrive_id": "1gfYX4gFXwdiyUfwmiXOAChHTHSw6TJX7",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/VideoCopilot"
+                },
+                "zip": {
+                    "source": "gdrive",
+                    "filename": "OpticalFlares_zip.zip",
+                    "gdrive_id": "1dBBKJYZboBIaW_qMt_8bQ4aZk-8iyeN0",
+                    "target_path": "C:/"
+                }
+            },
+            "warning_text": "После установки используй лицензию  с диска C",
+            "warning_popup": false
+        },
+        {
+            "name": "TextExploder",
+            "version": "1.0",
+            "size": "? MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "TextExploder_file.jsxbin",
+                    "gdrive_id": "1-d6DEEsOs5jdtJkxHF0AnnyLZys2xLyR",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Scripts/ScriptUI Panels"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "Crate's_Light_Wrap",
+            "version": "1.0",
+            "size": "<1MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "file"
+            ],
+            "custom_files": {
+                "file": {
+                    "source": "gdrive",
+                    "filename": "Crate's_Light_Wrap_file.aex",
+                    "gdrive_id": "1gbWElfML0queVWmRYYO-GnPjpjEOa4v3",
+                    "target_path": "C:/Program Files/Adobe/Adobe After Effects 2023/Support Files/Plug-ins/Plugins Everything"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        },
+        {
+            "name": "Vimager.Bundle",
+            "version": "1.0",
+            "size": "250MB",
+            "bat_path": "CUSTOM",
+            "c_types": [
+                "exe"
+            ],
+            "custom_files": {
+                "exe": {
+                    "source": "gdrive",
+                    "filename": "Vimager.Bundle_exe.exe",
+                    "gdrive_id": "1lcABPdrulAT0KOh_G9cwQeOlcksvB21y"
+                }
+            },
+            "warning_text": "",
+            "warning_popup": false
+        }
+    ]
+}

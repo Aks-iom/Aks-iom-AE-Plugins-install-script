@@ -1,0 +1,318 @@
+{
+    "plugins": [
+        {
+            "name": "RedGiant",
+            "version": "2026.3",
+            "bat_path": "RedGiant\\RedGiant.bat",
+            "needs_version": false,
+            "size": "~3,2 GB",
+            "md5": null,
+            "keywords": [
+                "red giant",
+                "maxon"
+            ],
+            "gdrive_id": "1y8kM4KV6HswkN3L7PqSmLQhy-rL30upC"
+        },
+        {
+            "name": "Sapphire",
+            "version": "2026",
+            "bat_path": "Sapphire\\Sapphire.bat",
+            "needs_version": false,
+            "size": "~1,3 GB",
+            "md5": null,
+            "keywords": [
+                "sapphire",
+                "genarts"
+            ],
+            "gdrive_id": "1kW-xMFdipm6Q2LsFr5E1_d_IYptF3lvd"
+        },
+        {
+            "name": "Mocha_Pro",
+            "version": "2026",
+            "bat_path": "Mocha pro\\mochapro_installer.bat",
+            "needs_version": false,
+            "size": "~1,1 GB",
+            "md5": null,
+            "keywords": [
+                "mocha pro",
+                "mochapro"
+            ],
+            "gdrive_id": "1LrOCjyGIqJH7RfxeO6XqkduweKxp9RMM"
+        },
+        {
+            "name": "BCC",
+            "version": "2026.0.1",
+            "bat_path": "BCC\\BCC.bat",
+            "needs_version": false,
+            "size": "~2,85 GB",
+            "md5": null,
+            "keywords": [
+                "continuum",
+                "bcc"
+            ],
+            "gdrive_id": "1XrUp2oNRlu6upIipHg4OelP9xV9Iua7g"
+        },
+        {
+            "name": "Bokeh",
+            "version": "1.4.1",
+            "bat_path": "Bokeh\\Bokeh.bat",
+            "needs_version": true,
+            "size": "~8,5 MB",
+            "md5": null,
+            "keywords": [
+                "bokeh"
+            ],
+            "gdrive_id": "1G-Nq99ZsYglH9VxF4tQ_8B7HKJDcj1fw"
+        },
+        {
+            "name": "Deep_Glow",
+            "version": "1.6.6",
+            "bat_path": "Deep_Glow\\Deep_Glow.bat",
+            "needs_version": false,
+            "size": "~2 MB",
+            "md5": null,
+            "keywords": [
+                "deep glow",
+                "deep_glow",
+                "deepglow.aex"
+            ],
+            "gdrive_id": "1EdJTHsmPwcq2uNFx_SLy9I7_tzeqs0U5"
+        },
+        {
+            "name": "Deep_Glow2",
+            "version": "1.1",
+            "bat_path": "Deep_Glow2\\deep_glow2.bat",
+            "needs_version": true,
+            "size": "~5 MB",
+            "md5": null,
+            "keywords": [
+                "deepglow2",
+                "deep glow 2",
+                "deep_glow2",
+                "irisblursdk.dll"
+            ],
+            "gdrive_id": "15u3MNjgbKORw5MeBud7w8jcF_U__BEgT"
+        },
+        {
+            "name": "Element",
+            "version": "2.2.3",
+            "bat_path": "Element\\Element.bat",
+            "needs_version": true,
+            "size": "~550 MB",
+            "md5": null,
+            "keywords": [
+                "element"
+            ],
+            "gdrive_id": "1_SredouM2YicE0H3LJ5ZA7A96ICoKrw3"
+        },
+        {
+            "name": "Fast_Layers",
+            "version": "1.0",
+            "bat_path": "Fast_Layers\\Fast_Layers.bat",
+            "needs_version": false,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "fast_layers",
+                "fast layers"
+            ],
+            "gdrive_id": "104Aph7Esk6EbrGBLlWQw5vFO9ducAsfN"
+        },
+        {
+            "name": "Flow",
+            "version": "1.5",
+            "bat_path": "Flow\\Flow.bat",
+            "needs_version": false,
+            "size": "~15 MB",
+            "md5": null,
+            "keywords": [
+                "flow-v",
+                "flow"
+            ],
+            "gdrive_id": "1ngcSwjjywDGTNQacJiye1Hw_cy_nlsjj"
+        },
+        {
+            "name": "Fxconsole",
+            "version": "1.0.5",
+            "bat_path": "Fxconsole\\Fxconsole.bat",
+            "needs_version": true,
+            "size": "~1,7 MB",
+            "md5": null,
+            "keywords": [
+                "fxconsole"
+            ],
+            "gdrive_id": "1Ta6GJyHN_h87W0g1ciLtr5aX89l_TAYS"
+        },
+        {
+            "name": "Glitchify",
+            "version": "1.0",
+            "bat_path": "Glitchify\\Glitchify.bat",
+            "needs_version": true,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "glitchify"
+            ],
+            "gdrive_id": "1QbviuYn0E8-Q3_cNT6Rwky7NcrULKRhm"
+        },
+        {
+            "name": "Influx",
+            "version": "1.6.1",
+            "bat_path": "Autokroma Influx/dummy",
+            "needs_version": false,
+            "size": "36 MB",
+            "gdrive_id": "1rWImgkUwvFXhkUiArRzi1DDpfqPi24xc",
+            "keywords": [
+                "influx",
+                "autokroma"
+            ]
+        },
+        {
+            "name": "Prime_tool",
+            "version": "1.0",
+            "bat_path": "Prime_tool\\Prime_tool.bat",
+            "needs_version": false,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "primetools",
+                "prime_tool",
+                "com.primetools"
+            ],
+            "gdrive_id": "1RFDXOHRK_8XbiGHvAz9KGi_THdFF5EKF"
+        },
+        {
+            "name": "RSMB",
+            "version": "6.6.0",
+            "bat_path": "RSMB/setup.exe",
+            "needs_version": false,
+            "size": "32.4 MB",
+            "keywords": [
+                "rsmb",
+                "reel",
+                "smart",
+                "motion",
+                "blur"
+            ],
+            "gdrive_id": "1PvWdft-vxPfOf_UqfLl9OfPPofjnGn4V"
+        },
+        {
+            "name": "Saber",
+            "version": "1.0.40",
+            "bat_path": "Saber\\Saber.bat",
+            "needs_version": true,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "saber"
+            ],
+            "gdrive_id": "13QCp9VsstYdQgbB00Dq3vpZYP5kuL-nG"
+        },
+        {
+            "name": "Shake_Generator",
+            "version": "1.0",
+            "bat_path": "Shake_Generator\\Shake_Generator.bat",
+            "needs_version": true,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "shake_generator",
+                "shake generator"
+            ],
+            "gdrive_id": "10GCJTk-B2bDYMTS0en4wbpq10ceVAFfB"
+        },
+        {
+            "name": "Twich",
+            "version": "1.0.4",
+            "bat_path": "Twich\\Twich.bat",
+            "needs_version": true,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "twitch",
+                "twich"
+            ],
+            "gdrive_id": "1pFZ1DRC3K00uWmRq23Asu-K9dl8Yr9s4"
+        },
+        {
+            "name": "Twixtor",
+            "version": "8.1.0",
+            "bat_path": "Twixtor\\Twixtor.bat",
+            "needs_version": false,
+            "size": "~200 MB",
+            "md5": null,
+            "keywords": [
+                "twixtor",
+                "twixtor8ae"
+            ],
+            "gdrive_id": "1Kcjkv4qbqVqaeEYnaeY1vKEkOGioePT9"
+        },
+        {
+            "name": "Textevo2",
+            "version": "2.0",
+            "bat_path": "textevo2\\textevo2.bat",
+            "needs_version": true,
+            "size": "3 MB",
+            "md5": null,
+            "keywords": [
+                "textevo2",
+                "textevo"
+            ],
+            "gdrive_id": "1R6gWidqSVR4HC_c7XB025khxHMLFe_KK"
+        },
+        {
+            "name": "Uwu2x",
+            "version": "1.0",
+            "bat_path": "uwu2x\\uwu2x.bat",
+            "needs_version": false,
+            "size": "<1 MB",
+            "md5": null,
+            "keywords": [
+                "uwu2x",
+                "uwu2x-pro"
+            ],
+            "gdrive_id": "1X4QYzAAZK0djo0-7a8mn63tpvWNFQs0u"
+        },
+        {
+            "name": "Universe",
+            "version": "2024.0",
+            "bat_path": "Universe\\Universe.bat",
+            "needs_version": false,
+            "size": "~1,8 GB",
+            "md5": null,
+            "keywords": [
+                "red giant universe",
+                "universe"
+            ],
+            "gdrive_id": "PLACEHOLDER_UNIVERSE_GDRIVE_ID"
+        },
+        {
+            "name": "Trapcode",
+            "version": "2024.0",
+            "bat_path": "Trapcode\\Trapcode.bat",
+            "needs_version": false,
+            "size": "~970 MB",
+            "md5": null,
+            "keywords": [
+                "trapcode",
+                "particular",
+                "form"
+            ],
+            "gdrive_id": "PLACEHOLDER_TRAPCODE_GDRIVE_ID"
+        },
+        {
+            "name": "MBS",
+            "version": "2024.0",
+            "bat_path": "MBS\\MBS.bat",
+            "needs_version": false,
+            "size": "~390 MB",
+            "md5": null,
+            "keywords": [
+                "magic bullet",
+                "mbs",
+                "magic bullet suite"
+            ],
+            "gdrive_id": "PLACEHOLDER_MBS_GDRIVE_ID"
+        }
+    ]
+}

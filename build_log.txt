@@ -1,0 +1,112 @@
+93 INFO: PyInstaller: 6.19.0, contrib hooks: 2026.4
+93 INFO: Python: 3.13.13
+113 INFO: Platform: Windows-11-10.0.26200-SP0
+113 INFO: Python environment: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0
+114 INFO: Removing temporary files and cleaning cache in C:\Users\Sergey-MSI\AppData\Local\pyinstaller
+369 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\Sergey-MSI\\Desktop\\AksiomInstaller',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\\python313.zip',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\\DLLs',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\\Lib',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0',
+ 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\\Lib\\site-packages',
+ 'C:\\Users\\Sergey-MSI\\Desktop\\AksiomInstaller']
+655 INFO: Appending 'datas' from .spec
+655 INFO: checking Analysis
+656 INFO: Building Analysis because Analysis-00.toc is non existent
+656 INFO: Looking for Python shared library...
+656 INFO: Using Python shared library: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3568.0_x64__qbz5n2kfra8p0\python313.dll
+656 INFO: Running Analysis Analysis-00.toc
+656 INFO: Target bytecode optimization level: 0
+656 INFO: Initializing module dependency graph...
+656 INFO: Initializing module graph hook caches...
+664 INFO: Analyzing modules for base_library.zip ...
+1717 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+2227 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+2929 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+3754 INFO: Caching module dependency graph...
+3774 INFO: Analyzing C:\Users\Sergey-MSI\Desktop\AksiomInstaller\main.py
+3776 INFO: Processing standard module hook 'hook-PyQt6.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+4258 INFO: Processing standard module hook 'hook-PyQt6.QtWidgets.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+5430 INFO: Processing standard module hook 'hook-PyQt6.QtCore.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+7178 INFO: Processing standard module hook 'hook-PyQt6.QtGui.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+14220 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+14223 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+14472 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+14473 INFO: SetuptoolsInfo: initializing cached setuptools info...
+15042 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+15099 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+15508 INFO: Processing standard module hook 'hook-sqlite3.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+15831 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+16082 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+16220 INFO: Processing standard module hook 'hook-urllib3.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+16281 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16281 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+16285 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+16292 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16312 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16312 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+16320 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16320 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+16466 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16595 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+16596 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16711 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16712 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+16728 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+16742 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16742 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+16905 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16905 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+17245 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+17245 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+17572 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+17798 INFO: Processing pre-find-module-path hook 'hook-pyi_splash.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+17798 INFO: Adding pyi_splash module to application dependencies.
+17860 INFO: Processing module hooks (post-graph stage)...
+18221 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+18375 INFO: Performing binary vs. data reclassification (125 entries)
+18386 INFO: Looking for ctypes DLLs
+18419 INFO: Analyzing run-time hooks ...
+18421 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\rthooks'
+18423 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\rthooks'
+18424 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\rthooks'
+18426 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\rthooks'
+18427 INFO: Including run-time hook 'pyi_rth_pyqt6.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\rthooks'
+18428 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+18428 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyInstaller\\hooks'
+18436 INFO: Creating base_library.zip...
+18448 INFO: Looking for dynamic libraries
+18857 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyQt6\\Qt6\\bin']
+18857 INFO: Extra DLL search directories (PATH): ['C:\\Users\\Sergey-MSI\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyQt6\\Qt6\\bin']
+19235 INFO: Warnings written to C:\Users\Sergey-MSI\Desktop\AksiomInstaller\build\AksiomInstaller\warn-AksiomInstaller.txt
+19278 INFO: Graph cross-reference written to C:\Users\Sergey-MSI\Desktop\AksiomInstaller\build\AksiomInstaller\xref-AksiomInstaller.html
+19302 INFO: checking PYZ
+19302 INFO: Building PYZ because PYZ-00.toc is non existent
+19302 INFO: Building PYZ (ZlibArchive) C:\Users\Sergey-MSI\Desktop\AksiomInstaller\build\AksiomInstaller\PYZ-00.pyz
+19744 INFO: Building PYZ (ZlibArchive) C:\Users\Sergey-MSI\Desktop\AksiomInstaller\build\AksiomInstaller\PYZ-00.pyz completed successfully.
+19757 INFO: checking PKG
+19757 INFO: Building PKG because PKG-00.toc is non existent
+19757 INFO: Building PKG (CArchive) AksiomInstaller.pkg
+26977 INFO: Building PKG (CArchive) AksiomInstaller.pkg completed successfully.
+26980 INFO: Bootloader C:\Users\Sergey-MSI\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+26980 INFO: checking EXE
+26980 INFO: Building EXE because EXE-00.toc is non existent
+26980 INFO: Building EXE from EXE-00.toc
+26980 INFO: Copying bootloader EXE to C:\Users\Sergey-MSI\Desktop\AksiomInstaller\dist\AksiomInstaller.exe
+27073 INFO: Copying icon to EXE
+27159 INFO: Copying 0 resources to EXE
+27159 INFO: Embedding manifest in EXE
+27253 WARNING: Execution of 'write_manifest_to_executable' failed on attempt #1 / 20: error(110, 'EndUpdateResourceW', 'Системе не удается открыть указанное устройство или файл.'). Retrying in 0.05 second(s)...
+27310 INFO: Appending PKG archive to EXE
+27310 WARNING: Execution of '_append_data_to_exe' failed on attempt #1 / 20: PermissionError(13, 'Permission denied'). Retrying in 0.05 second(s)...
+27363 WARNING: Execution of '_append_data_to_exe' failed on attempt #2 / 20: PermissionError(13, 'Permission denied'). Retrying in 0.06 second(s)...
+27767 INFO: Fixing EXE headers
+28376 INFO: Building EXE from EXE-00.toc completed successfully.
+28379 INFO: Build complete! The results are available in: C:\Users\Sergey-MSI\Desktop\AksiomInstaller\dist
