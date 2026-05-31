@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "dgSpecHash": "4LQlFmqM9MA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sergey-MSI\\Documents\\AEPI\\AEPluginInstaller-claude\\AEPluginInstaller.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.25\\microsoft.net.illink.tasks.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\sharpcompress\\0.39.0\\sharpcompress.0.39.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\system.buffers\\4.6.0\\system.buffers.4.6.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\system.text.json\\8.0.4\\system.text.json.8.0.4.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\zstdsharp.port\\0.8.4\\zstdsharp.port.0.8.4.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.25\\microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.25\\microsoft.netcore.app.runtime.win-x64.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.25\\microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.25\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.25\\microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.25\\microsoft.aspnetcore.app.runtime.win-x64.8.0.25.nupkg.sha512",
+    "C:\\Users\\Sergey-MSI\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.25\\microsoft.netcore.app.host.win-x64.8.0.25.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "У пакета \"SharpCompress\" 0.39.0 есть известная уязвимость https://github.com/advisories/GHSA-6c8g-7p36-r338 (уровень серьезности: средний уровень)",
+      "projectPath": "C:\\Users\\Sergey-MSI\\Documents\\AEPI\\AEPluginInstaller-claude\\AEPluginInstaller.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Sergey-MSI\\Documents\\AEPI\\AEPluginInstaller-claude\\AEPluginInstaller.csproj",
+      "libraryId": "SharpCompress",
+      "targetGraphs": [
+        "net8.0-windows",
+        "net8.0-windows/win-x64"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "У пакета \"System.Text.Json\" 8.0.4 есть известная уязвимость https://github.com/advisories/GHSA-8g4q-xg66-9fp4 (уровень серьезности: высокий уровень)",
+      "projectPath": "C:\\Users\\Sergey-MSI\\Documents\\AEPI\\AEPluginInstaller-claude\\AEPluginInstaller.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Sergey-MSI\\Documents\\AEPI\\AEPluginInstaller-claude\\AEPluginInstaller.csproj",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0-windows",
+        "net8.0-windows/win-x64"
+      ]
+    }
+  ]
+}

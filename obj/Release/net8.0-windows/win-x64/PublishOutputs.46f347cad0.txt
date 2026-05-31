@@ -1,0 +1,11 @@
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\AEPluginInstaller.pdb
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\D3DCompiler_47_cor3.dll
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\PenImc_cor3.dll
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\PresentationNative_cor3.dll
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\vcruntime140_cor3.dll
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\wpfgfx_cor3.dll
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\Catalogs\extended_list.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\Catalogs\plugins.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\Resources\strings.en.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\Resources\strings.ru.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\bin\Release\net8.0-windows\win-x64\publish\AEPluginInstaller.exe

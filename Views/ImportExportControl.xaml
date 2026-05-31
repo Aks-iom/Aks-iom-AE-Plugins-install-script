@@ -1,0 +1,37 @@
+<UserControl x:Class="AEPluginInstaller.Views.ImportExportControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BgBrush}" Foreground="{StaticResource TextBrush}"
+             FontFamily="Segoe UI">
+    <Grid Margin="24,22,24,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Импорт и экспорт"
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,16"/>
+
+        <StackPanel Grid.Row="1">
+            <Border Background="{StaticResource PanelBrush}"
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                    CornerRadius="8" Padding="16" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="Импорт конфигурации" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                    <TextBlock Text="Загрузить список плагинов из внешнего JSON-файла." Foreground="{StaticResource TextMutedBrush}" FontSize="11" Margin="0,0,0,10" TextWrapping="Wrap"/>
+                    <Button Content="Импортировать" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left" Padding="16,8" Click="ImportBtn_Click"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{StaticResource PanelBrush}"
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                    CornerRadius="8" Padding="16" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="Экспорт текущей конфигурации" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                    <TextBlock Text="Сохранить выбранную конфигурацию в JSON-файл для резервной копии или передачи." Foreground="{StaticResource TextMutedBrush}" FontSize="11" Margin="0,0,0,10" TextWrapping="Wrap"/>
+                    <Button x:Name="ExportBtn" Content="Экспортировать" Style="{StaticResource GhostButton}" HorizontalAlignment="Left" Padding="16,8" Click="ExportBtn_Click"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

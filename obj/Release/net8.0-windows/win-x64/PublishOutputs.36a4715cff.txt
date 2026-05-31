@@ -1,0 +1,6 @@
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\AEPluginInstaller.pdb
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\Catalogs\extended_list.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\Catalogs\plugins.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\Resources\strings.en.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\Resources\strings.ru.json
+C:\Users\Sergey-MSI\Documents\AEPI\AEPluginInstaller-claude\publish\AEPluginInstaller.exe
