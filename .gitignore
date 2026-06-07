@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+publish/
+
+# IDE
+*.user
+*.suo
+.vs/
+
+# Local artefacts
+*.exe
+*.bak
+*.before_*
+
+# OS
+.DS_Store
+Thumbs.db
