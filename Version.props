@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Версия приложения. Меняй только число ниже — она автоматически попадёт
+    в FileVersion/AssemblyVersion/Version при следующей сборке.
+    Формат: Major.Minor.Build (например, 1.0.5). Можно и 4 компоненты (1.0.5.0).
+  -->
+  <PropertyGroup>
+    <AppVersion>1.0.1</AppVersion>
+  </PropertyGroup>
+</Project>
